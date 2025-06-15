@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Sets character encoding and responsive design -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Document</title>
+
+    <!-- Link to external CSS stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Header section -->
     <div class="top-bar">
       <h1>🎭 Event Guest Management System</h1>
     </div>
 
+    <!-- Main content area containing form and guest list -->
     <div class="main-area">
+      <!-- Left panel: Add guest form and statistics -->
       <div class="control-panel">
+        <!-- Form to add a new guest -->
         <div class="form-section">
           <div class="form-title">Add New Guest</div>
           <form id="guestForm">
+            <!-- Guest name input -->
             <div class="form-group">
               <label for="guestName">Full Name</label>
               <input
@@ -26,6 +35,8 @@
                 required
               />
             </div>
+
+            <!-- Guest category/relationship selection -->
             <div class="form-group">
               <label for="guestCategory">Relationship</label>
               <select id="guestCategory" class="form-control">
@@ -34,10 +45,13 @@
                 <option value="colleague">Colleague</option>
               </select>
             </div>
+
+            <!-- Submit button -->
             <button type="submit" class="btn-primary">Add to List</button>
           </form>
         </div>
 
+        <!-- Statistics section showing counts -->
         <div class="stats-section">
           <div class="stats-header">Statistics</div>
           <div class="stats-grid">
@@ -61,15 +75,20 @@
         </div>
       </div>
 
+      <!-- Right panel: Displays guest list -->
       <div class="guest-display">
+        <!-- Header showing title and count -->
         <div class="guest-header">
           <div class="guest-title">Guest Registry</div>
           <div class="guest-count" id="guestCount">0 Guests</div>
         </div>
 
+        <!-- Placeholder for dynamic alerts (e.g., error messages) -->
         <div id="alertContainer"></div>
 
+        <!-- Container for guest list content -->
         <div id="guestContainer">
+          <!-- Default empty state -->
           <div class="empty-display">
             <div class="empty-icon">📋</div>
             <h3>No Guests Registered</h3>
@@ -79,9 +98,12 @@
       </div>
     </div>
 
+    <!-- Footer or informational bar -->
     <div class="bottom-bar">
       Manage your event guest list efficiently • Maximum 10 guests allowed
     </div>
+
+    <!-- Linking the main JavaScript file -->
     <script src="src/index.js"></script>
   </body>
 </html>
