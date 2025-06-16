@@ -1,109 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Sets character encoding and responsive design -->
     <meta charset="UTF-8" />
+    <!-- Sets the character encoding to UTF-8 to support all characters -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Makes the page responsive on all devices -->
 
-    <title>Document</title>
+    <title>Event Guest List!</title>
+    <!-- Title that appears in the browser tab -->
 
-    <!-- Link to external CSS stylesheet -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Link to the external CSS file for styling -->
   </head>
+
   <body>
-    <!-- Header section -->
-    <div class="top-bar">
-      <h1>🎭 Event Guest Management List System</h1>
-    </div>
+    <!-- Page content starts here -->
+    <div class="container">
+      <!-- Wrapper div for layout and styling -->
 
-    <!-- Main content area containing form and guest list -->
-    <div class="main-area">
-      <!-- Left panel: Add guest form and statistics -->
-      <div class="control-panel">
-        <!-- Form to add a new guest -->
-        <div class="form-section">
-          <div class="form-title">Add New Guest</div>
-          <form id="guestForm">
-            <!-- Guest name input -->
-            <div class="form-group">
-              <label for="guestName">Full Name</label>
-              <input
-                type="text"
-                id="guestName"
-                class="form-control"
-                placeholder="Enter guest name"
-                required
-              />
-            </div>
+      <h1>Event Guest List</h1>
+      <!-- Main page heading -->
 
-            <!-- Guest category/relationship selection -->
-            <div class="form-group">
-              <label for="guestCategory">Relationship</label>
-              <select id="guestCategory" class="form-control">
-                <option value="friend">Friend</option>
-                <option value="family">Family</option>
-                <option value="colleague">Colleague</option>
-              </select>
-            </div>
+      <div class="form-section">
+        <!-- Section that contains the form -->
 
-            <!-- Submit button -->
-            <button type="submit" class="btn-primary">Add to List</button>
-          </form>
-        </div>
+        <form id="guestForm">
+          <!-- Form to add a new guest -->
 
-        <!-- Statistics section showing counts -->
-        <div class="stats-section">
-          <div class="stats-header">Statistics</div>
-          <div class="stats-grid">
-            <div class="stat-item">
-              <span class="stat-number" id="totalGuests">0</span>
-              <span class="stat-label">Total</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number" id="attendingGuests">0</span>
-              <span class="stat-label">Confirmed</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number" id="notAttendingGuests">0</span>
-              <span class="stat-label">Pending</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">10</span>
-              <span class="stat-label">Max</span>
-            </div>
+          <div class="form-group">
+            <!-- Groups input fields for layout -->
+
+            <input
+              type="text"
+              id="guestName"
+              placeholder="Enter guest name"
+              required
+            /><!-- Input field for entering the guest's name 'required' means the form won't submit if this is empty-->
+
+            <select id="guestCategory">
+              <!-- Dropdown to select guest category -->
+
+              <option value="friend">Friend</option>
+              <option value="family">Family</option>
+              <option value="colleague">Colleague</option>
+            </select>
+
+            <button type="submit">Add Guest</button>
+            <!-- Button to submit the form and add guest -->
           </div>
-        </div>
-      </div>
+        </form>
 
-      <!-- Right panel: Displays guest list -->
-      <div class="guest-display">
-        <!-- Header showing title and count -->
-        <div class="guest-header">
-          <div class="guest-title">Guest Registry</div>
-          <div class="guest-count" id="guestCount">0 Guests</div>
-        </div>
-
-        <!-- Placeholder for dynamic alerts (e.g., error messages) -->
         <div id="alertContainer"></div>
+        <!-- Area where alert messages (like errors) will show up -->
+      </div>
 
-        <!-- Container for guest list content -->
-        <div id="guestContainer">
-          <!-- Default empty state -->
-          <div class="empty-display">
-            <div class="empty-icon">📋</div>
-            <h3>No Guests Registered</h3>
-            <p>Use the control panel to add your first guest</p>
-          </div>
+      <div class="guest-count">
+        <!-- Shows number of guests added -->
+
+        <span id="guestCount">0</span> / 10 guests
+      </div>
+
+      <div class="guest-list" id="guestList">
+        <!-- List of added guests will appear here -->
+
+        <div class="empty-state" id="emptyState">
+          <!-- Default message when no guests are added yet -->
+          No guests added yet. Start building your guest list!
         </div>
       </div>
     </div>
 
-    <!-- Footer or informational bar -->
-    <div class="bottom-bar">
-      Manage your event guest list efficiently • Maximum 10 guests allowed
-    </div>
-
-    <!-- Linking the main JavaScript file -->
-    <script src="src/index.js"></script>
+    <script src="src/script.js"></script>
+    <!-- Links the JavaScript file that handles all logic -->
   </body>
 </html>

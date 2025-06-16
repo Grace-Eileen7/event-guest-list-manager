@@ -1,367 +1,259 @@
-/* RESET STYLES */
+/* Reset default browser styling and set box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* GLOBAL BODY STYLES */
+/* Base styles for the whole page */
 body {
-  font-family: "Arial", sans-serif;
-  background: white;
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* top bar, main content, bottom bar */
-}
-
-/* TOP HEADER */
-.top-bar {
-  background: #350822;
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0c080d; /* dark background */
+  color: #7a6284; /* soft purple text */
+  line-height: 1.6;
   padding: 20px;
+}
+
+/* Main container holding everything */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgba(122, 98, 132, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid rgba(122, 98, 132, 0.2);
+}
+
+/* Page title */
+h1 {
   text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  margin-bottom: 30px;
+  color: #7a6284;
+  font-size: 2rem;
+  font-weight: 300;
 }
 
-.top-bar h1 {
-  font-size: 1.8rem;
-  font-weight: normal;
-}
-
-/* MAIN GRID LAYOUT */
-.main-area {
-  display: grid;
-  grid-template-columns: 300px 1fr; /* sidebar and content */
-  height: calc(100vh - 120px);
-  overflow: hidden;
-}
-
-/* SIDEBAR PANEL */
-.control-panel {
-  background: #f8f9fa;
-  border-right: 1px solid #dee2e6;
-  padding: 30px 25px;
-  overflow-y: auto;
-}
-
-/* FORM SECTION */
+/* Section with the form */
 .form-section {
   margin-bottom: 30px;
+  padding: 20px;
+  background-color: rgba(122, 98, 132, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(122, 98, 132, 0.1);
 }
 
-.form-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #350822;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
+/* Group input and dropdown neatly in one row */
 .form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #495057;
-  font-size: 0.9rem;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px 12px;
-  border: 2px solid #e9ecef;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.2s;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: #350822;
-}
-
-/*  FORM BUTTON */
-.btn-primary {
-  width: 100%;
-  background: #350822;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-primary:hover {
-  background: #4a0c2e;
-}
-
-/*  STATS PANEL  */
-.stats-section {
-  background: white;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.stats-header {
-  background: #350822;
-  color: white;
-  padding: 12px 15px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: #dee2e6;
-}
-
-.stat-item {
-  background: white;
-  padding: 15px;
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #350822;
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  color: #6c757d;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* GUEST DISPLAY AREA */
-.guest-display {
-  background: white;
-  overflow-y: auto;
-  position: relative;
-}
-
-.guest-header {
-  position: sticky;
-  top: 0;
-  background: white;
-  border-bottom: 2px solid #350822;
-  padding: 20px 30px;
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
   align-items: center;
 }
 
-.guest-title {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: #350822;
+/* Text input styling */
+input[type="text"] {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid rgba(122, 98, 132, 0.3);
+  border-radius: 6px;
+  background-color: rgba(12, 8, 13, 0.3);
+  color: #7a6284;
+  font-size: 14px;
 }
 
-.guest-count {
-  background: #350822;
-  color: white;
-  padding: 5px 12px;
-  border-radius: 15px;
-  font-size: 0.9rem;
-  font-weight: 600;
+/* Highlight input when active */
+input[type="text"]:focus {
+  outline: none;
+  border-color: #7a6284;
+  background-color: rgba(12, 8, 13, 0.5);
 }
 
-/*  GUEST CARDS GRID  */
-.guest-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 30px;
+/* Dropdown styles */
+select {
+  padding: 12px;
+  border: 1px solid rgba(122, 98, 132, 0.3);
+  border-radius: 6px;
+  background-color: rgba(12, 8, 13, 0.3);
+  color: #7a6284;
+  font-size: 14px;
 }
 
-/* INDIVIDUAL GUEST CARD */
-.guest-card {
-  background: white;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: all 0.3s;
-  position: relative;
+/* Button styles */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #7a6284;
+  color: #0c080d;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
-.guest-card:hover {
-  box-shadow: 0 2px 6px rgba(53, 8, 34, 0.1);
+/* Button hover effect */
+button:hover {
+  background-color: rgba(122, 98, 132, 0.8);
   transform: translateY(-1px);
 }
 
-/* Guest card header styles */
-.guest-card-header {
-  background: linear-gradient(45deg, #350822, #5a1538);
-  color: white;
-  padding: 15px;
-  position: relative;
+/* Button click effect */
+button:active {
+  transform: translateY(0);
 }
 
+/* Shows how many guests have been added */
+.guest-count {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: rgba(122, 98, 132, 0.8);
+}
+
+/* Area where guest cards appear */
+.guest-list {
+  min-height: 200px;
+}
+
+/* Each individual guest card */
+.guest-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: rgba(122, 98, 132, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(122, 98, 132, 0.2);
+  animation: slideIn 0.3s ease;
+}
+
+/* Animation for guest cards sliding in */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Info section inside each guest card */
+.guest-info {
+  flex: 1;
+}
+
+/* Name of the guest */
 .guest-name {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 5px;
 }
 
-.guest-category {
-  font-size: 0.8rem;
-  opacity: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* Other details like category, RSVP, time */
+.guest-details {
+  font-size: 12px;
+  color: rgba(122, 98, 132, 0.7);
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
-/* Attendance status indicator */
-.guest-status {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #4caf50; /* Confirmed */
-  border: 2px solid white;
+/* Styling for tags showing friend/family/colleague */
+.category-tag {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
 }
 
-.guest-status.not-attending {
-  background: #f44336; /* Not confirmed */
+/* Different background colors for each category */
+.category-friend {
+  background-color: rgba(122, 98, 132, 0.2);
+  color: #7a6284;
 }
 
-.guest-card-body {
-  padding: 15px;
+.category-family {
+  background-color: rgba(122, 98, 132, 0.3);
+  color: #7a6284;
 }
 
-.guest-meta {
-  font-size: 0.8rem;
-  color: #6c757d;
-  margin-bottom: 15px;
+.category-colleague {
+  background-color: rgba(122, 98, 132, 0.25);
+  color: #7a6284;
 }
 
-/* Guest card action buttons */
+/* RSVP text status styling */
+.rsvp-status {
+  font-weight: 500;
+}
+
+.rsvp-attending {
+  color: #7a6284;
+}
+
+.rsvp-not-attending {
+  color: rgba(122, 98, 132, 0.6);
+}
+
+/* Container for action buttons (edit, remove, rsvp) */
 .guest-actions {
   display: flex;
   gap: 8px;
-  justify-content: flex-end;
 }
 
-/* SMALL BUTTONS */
-.btn-sm {
+/* Reusable button styles */
+.btn-small {
   padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
+  font-size: 12px;
 }
 
-.btn-edit {
-  background: #17a2b8;
-  color: white;
-}
-
-.btn-edit:hover {
-  background: #138496;
-}
-
-.btn-toggle {
-  background: #ffc107;
-  color: #212529;
-}
-
-.btn-toggle:hover {
-  background: #e0a800;
-}
-
+/* Remove button */
 .btn-remove {
-  background: #dc3545;
-  color: white;
+  background-color: rgba(122, 98, 132, 0.3);
+  color: #7a6284;
 }
 
 .btn-remove:hover {
-  background: #c82333;
+  background-color: rgba(122, 98, 132, 0.5);
 }
 
-/* EMPTY STATE MESSAGE */
-.empty-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: #6c757d;
+/* Edit button */
+.btn-edit {
+  background-color: rgba(122, 98, 132, 0.2);
+  color: #7a6284;
+}
+
+.btn-edit:hover {
+  background-color: rgba(122, 98, 132, 0.4);
+}
+
+/* RSVP toggle button */
+.btn-rsvp {
+  background-color: rgba(122, 98, 132, 0.25);
+  color: #7a6284;
+}
+
+.btn-rsvp:hover {
+  background-color: rgba(122, 98, 132, 0.45);
+}
+
+/* Message shown when no guests have been added yet */
+.empty-state {
   text-align: center;
   padding: 40px;
+  color: rgba(122, 98, 132, 0.6);
+  font-style: italic;
 }
 
-.empty-icon {
-  font-size: 4rem;
-  margin-bottom: 20px;
-  opacity: 0.3;
-}
-
-/* ALERT STYLES */
+/* Alert box styles */
 .alert {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  padding: 12px 20px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
   border-radius: 6px;
-  font-weight: 500;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.alert.warning {
-  background: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeaa7;
-}
-
-.alert.error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-/*  BOTTOM FOOTER  */
-.bottom-bar {
-  background: #f8f9fa;
-  border-top: 1px solid #dee2e6;
-  padding: 15px 20px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #6c757d;
-}
-
-/*  RESPONSIVE DESIGN  */
-@media (max-width: 768px) {
-  .main-area {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    height: auto;
-  }
-
-  .control-panel {
-    border-right: none;
-    border-bottom: 1px solid #dee2e6;
-  }
-
-  .guest-grid {
-    grid-template-columns: 1fr;
-    padding: 20px;
-  }
+  background-color: rgba(122, 98, 132, 0.2);
+  border: 1px solid rgba(122, 98, 132, 0.3);
+  color: #7a6284;
+  font-size: 14px;
 }
