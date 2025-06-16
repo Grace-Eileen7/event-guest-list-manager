@@ -27,13 +27,15 @@ This project is a simple web application that lets users manage a guest list for
 
 This project was built to practice **DOM manipulation**, **event handling**, and building a fully interactive user experience from scratch. The challenge was to create a form-driven app that responds instantly to user input — without refreshing the page.
 
-## 📁 File Structure
+### 📁 Project File Structure
 
--project-root/
-├── index.html → HTML layout
-├── style.css → Styling
+```
+project-root/
+├── index.html         # Main HTML layout
+├── style.css          # Styling (CSS)
 └── src/
-└── script.js → JavaScript logic (originally named index.js)
+    └── script.js      # JavaScript logic (renamed from index.js)
+```
 
 ## 👩‍💻 Author
 
