@@ -1,135 +1,126 @@
-let guests = []; // Array to hold guest objects
-let id = 1; // Unique ID counter for each guest
+// Global state
+let guests = []; // Array to store all guest objects
+let guestId = 1; // Unique ID counter for each guest
+const maxGuests = 10; // Maximum number of allowed guests
 
-// DOM element references
-const form = document.getElementById("guestForm");
-const nameInput = document.getElementById("guestName");
-const categorySelect = document.getElementById("guestCategory");
-const container = document.getElementById("guestContainer");
-const alertBox = document.getElementById("alertContainer");
-const totalEl = document.getElementById("totalGuests");
-const yesEl = document.getElementById("attendingGuests");
-const noEl = document.getElementById("notAttendingGuests");
-const countEl = document.getElementById("guestCount");
+// DOM references
+const form = document.getElementById("guestForm"); // Reference to the form element
+const nameInput = document.getElementById("guestName"); // Input field where the guest name is entered
+const categorySelect = document.getElementById("guestCategory"); // Dropdown menu to select guest category
+const guestList = document.getElementById("guestList"); // Container where the guest list will be rendered
+const guestCount = document.getElementById("guestCount"); // Span element showing current guest count
+const emptyState = document.getElementById("emptyState"); // Element that displays the "no guests yet" message
+const alertContainer = document.getElementById("alertContainer"); // Container to show alerts (like max guests reached)
 
-// Handle form submission
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = nameInput.value.trim();
-  const category = categorySelect.value;
-
-  // Validation checks
-  if (!name) return showAlert("Enter guest name", "error");
-  if (guests.some((g) => g.name.toLowerCase() === name.toLowerCase()))
-    return showAlert("Guest already exists", "error");
-  if (guests.length >= 10) return showAlert("Max 10 guests allowed", "error");
-
-  // Add new guest
-  guests.push({
-    id: id++,
-    name,
-    category,
-    rsvp: "attending",
-    time: new Date(),
-  });
-
-  // Reset form fields
-  nameInput.value = "";
-  categorySelect.value = "friend";
-  render(); // Re-render guest list
+// Initial setup when page loads -When DOM content is fully loaded, focus's on name input and render the guest list
+window.addEventListener("DOMContentLoaded", () => {
+  nameInput.focus(); // Set focus to input
+  render(); // Display any initial content (usually empty state)
 });
 
-// Render guest list or empty message
+// Handler form submission
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevent the page from reloading on submit
+
+  const name = nameInput.value.trim(); // Get trimmed guest name
+  const category = categorySelect.value; // Get selected category
+
+  if (!name) return showAlert("Please enter a guest name."); // If name is empty, show an alert and exit
+  if (guests.length >= maxGuests)
+    return showAlert(`Maximum of ${maxGuests} guests allowed!`); // If the max number of guests is reached, alert and exit
+
+  addGuest(name, category); // To add the new guest
+  nameInput.value = "";
+  nameInput.focus();
+});
+
+// Add a new guest to the list
+function addGuest(name, category) {
+  const guest = {
+    id: guestId++, // Assign a unique ID and increment it
+    name, // Guest name
+    category, // Guest category (friend, family, colleague.)
+    rsvp: "attending", // Default RSVP status
+    addedTime: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    }), // Time guest was added
+  };
+
+  guests.push(guest); // Add guest to array
+  render(); // Refresh the UI
+}
+
+// Render guests or empty state
 function render() {
-  if (!guests.length) {
-    container.innerHTML = `<div class="empty-display">
-      <div class="empty-icon">📋</div>
-      <h3>No Guests Registered</h3>
-      <p>Add your first guest using the form</p></div>`;
+  guestCount.textContent = guests.length; // Update counter
+  // If no guests, show empty message
+  if (guests.length === 0) {
+    emptyState.style.display = "block";
+    guestList.innerHTML = `<div class="empty-state">No guests added yet. Start building your guest list!</div>`;
     return;
   }
 
-  // Generate HTML for each guest
-  container.innerHTML =
-    '<div class="guest-grid">' +
-    guests
-      .map(
-        (g) => `
-    <div class="guest-card">
-      <div class="guest-card-header">
-        <div class="guest-name">${g.name}</div>
-        <div class="guest-category">${g.category}</div>
-        <div class="guest-status ${
-          g.rsvp === "attending" ? "" : "not-attending"
-        }"></div>
-      </div>
-      <div class="guest-card-body">
-        <div class="guest-meta">Status: ${
-          g.rsvp === "attending" ? "Confirmed" : "Pending"
-        } • ${g.time.toLocaleDateString()}</div>
-        <div class="guest-actions">
-          <button onclick="editGuest(${g.id})">Edit</button>
-          <button onclick="toggle(${g.id})">Toggle</button>
-          <button onclick="remove(${g.id})">Remove</button>
+  emptyState.style.display = "none"; // Hide empty message
+  // Map each guest into a block of HTML and render
+  guestList.innerHTML = guests
+    .map(
+      (guest) => `
+      <div class="guest-item">
+        <div class="guest-info">
+          <div class="guest-name">${escapeHtml(guest.name)}</div>
+          <div class="guest-details">
+            <span class="category-tag category-${guest.category}">${
+        guest.category
+      }</span>
+            <span class="rsvp-status rsvp-${guest.rsvp.replace(" ", "-")}">${
+        guest.rsvp
+      }</span>
+            <span>Added: ${guest.addedTime}</span>
+          </div>
         </div>
-      </div>
-    </div>`
-      )
-      .join("") +
-    "</div>";
-
-  updateStats();
-
-  // Show warning if guest count is near limit
-  if (guests.length === 8) showAlert("2 spots left!", "warning");
-}
-
-// Update guest statistics
-function updateStats() {
-  const total = guests.length;
-  const yes = guests.filter((g) => g.rsvp === "attending").length;
-  const no = total - yes;
-  totalEl.textContent = total;
-  yesEl.textContent = yes;
-  noEl.textContent = no;
-  countEl.textContent = `${total} Guest${total !== 1 ? "s" : ""}`;
-}
-
-// Display a temporary alert message
-function showAlert(msg, type) {
-  alertBox.innerHTML = `<div class="alert ${type}">${msg}</div>`;
-  setTimeout(() => (alertBox.innerHTML = ""), 3000);
-}
-
-// Remove a guest by ID
-function remove(id) {
-  guests = guests.filter((g) => g.id !== id);
-  render();
-}
-
-// Toggle RSVP status of a guest
-function toggle(id) {
-  const g = guests.find((g) => g.id === id);
-  if (g) g.rsvp = g.rsvp === "attending" ? "not-attending" : "attending";
-  render();
-}
-
-// Edit guest name with validation
-function editGuest(id) {
-  const g = guests.find((g) => g.id === id);
-  if (!g) return;
-  const newName = prompt("New name:", g.name)?.trim();
-  if (!newName) return;
-  if (
-    guests.some(
-      (x) => x.id !== id && x.name.toLowerCase() === newName.toLowerCase()
+        <div class="guest-actions">
+          <button onclick="toggleRSVP(${guest.id})">Toggle RSVP</button>
+          <button onclick="editGuest(${guest.id})">Edit</button>
+          <button onclick="removeGuest(${guest.id})">Remove</button>
+        </div>
+      </div>`
     )
-  ) {
-    return showAlert("Name already exists", "error");
-  }
-  g.name = newName;
-  render();
+    .join(""); // Convert array of strings into one big HTML string
 }
 
-// Initialize stats on page load
-updateStats();
+//Toggle RSVP status
+function toggleRSVP(id) {
+  const guest = guests.find((g) => g.id === id); // To Find guest by ID
+  if (guest) {
+    // Toggle between attending and not attending
+    guest.rsvp = guest.rsvp === "attending" ? "not attending" : "attending";
+    render(); // Re-render UI to reflect change
+  }
+}
+
+// Edit guest name
+function editGuest(id) {
+  const guest = guests.find((g) => g.id === id); // Find guest by ID
+  if (guest) {
+    const newName = prompt("Edit guest name:", guest.name); // Ask for new name
+    if (newName && newName.trim()) {
+      guest.name = newName.trim(); // Update name
+      render(); // Re-render list
+    }
+  }
+}
+
+// Remove guest from the list
+function removeGuest(id) {
+  guests = guests.filter((g) => g.id !== id); // Remove guest by ID
+  render(); // Update UI
+}
+
+// Show temporary alert messages
+function showAlert(message) {
+  alertContainer.innerHTML = `<div class="alert">${message}</div>`; // Show alert
+  setTimeout(() => {
+    alertContainer.innerHTML = ""; // Remove it after 3 seconds
+  }, 3000);
+}
