@@ -124,3 +124,9 @@ function showAlert(message) {
     alertContainer.innerHTML = ""; // Remove it after 3 seconds
   }, 3000);
 }
+// Function to safely escape any HTML that users might input in the guest name
+function escapeHtml(text) {
+  const div = document.createElement("div"); // Create a temporary <div> element
+  div.textContent = text; // Set the user-provided text as the textContent (not innerHTML)
+  return div.innerHTML; // Return the HTML-encoded version of the text
+}

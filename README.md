@@ -1,46 +1,109 @@
-# Event Guest List Manager 🎉
+# 🎉 Event Guest List Manager
 
-This project is a simple web application that lets users manage a guest list for an event. Built with HTML, CSS, and JavaScript, the app allows adding, removing, and updating guest details directly in the browser without page reloads.
+A simple interactive web app that allows users to manage a guest list for an event. Guests can be added, removed, edited, and marked as attending or not — all without reloading the page.
 
-## 🚀 Features
+---
 
-- Add a guest by submitting their name through a form.
-- Display guests dynamically on the page.
-- Remove guests using a "Remove" button.
-- Limit guest list to 10 people (with alert if exceeded).
-- Toggle each guest's RSVP status: **Attending / Not Attending**.
+## 📋 Description
 
-### 🌟 Stretch Features
+This project was created for **Week 2 Code Challenge** as part of a JavaScript learning module. The challenge is to build a working guest list manager that allows a user to:
 
-- Categorize guests as **Friend**, **Family**, or **Colleague** (with color tags).
-- Display the **timestamp** of when each guest was added.
-- Edit guest names.
+- Add a guest by typing their name and submitting the form
+- Display the guest in a list on the page
+- Remove a guest from the list
+- Limit the guest list to 10 people
+- Toggle RSVP status between **Attending** and **Not Attending**
 
-## 🧠 Learning Objectives
+It emphasizes real-world DOM manipulation, event handling, and dynamic rendering of data using **JavaScript**.
 
-- Practice DOM manipulation with JavaScript
-- Use `event.preventDefault()` to stop default form actions
-- Capture and handle user input
-- Dynamically update the web page without refreshing
+---
 
-## 💡 Purpose
+## 🛠️ Technologies Used
 
-This project was built to practice **DOM manipulation**, **event handling**, and building a fully interactive user experience from scratch. The challenge was to create a form-driven app that responds instantly to user input — without refreshing the page.
+- HTML5
+- CSS3
+- JavaScript (ES6)
 
-### 📁 Project File Structure
+---
+
+## 📁 File Structure
 
 ```
 project-root/
-├── index.html         # Main HTML layout
-├── style.css          # Styling (CSS)
-└── src/
-    └── script.js      # JavaScript logic (renamed from index.js)
+├── index.html              # The main HTML layout
+├── style.css               # Styling for the app
+├── src/
+│   └── script.js           # JavaScript logic (formerly index.js)
+├── assets/
+│   ├── favicon.png         # App favicon
+│   └── screenshot.png      # Screenshot of the app UI
+
 ```
+
+---
+
+## 🖼️ Screenshot
+
+![Screenshot](./assets/Screenshot%202025-06-17%20112905.png)
+
+---
+
+## 🧪 Testing and How to Run the Project
+
+You can run this app directly in your browser. No installations are required.
+
+### ✅ Option 1: Run on Your Local Machine
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/your-username/event-guest-list-manager.git
+   ```
+
+2. **Navigate into the project folder**
+
+   ```bash
+   cd event-guest-list-manager
+   ```
+
+3. **Open `index.html` in your browser**
+   - Double-click on `index.html`
+   - Or right-click and choose **"Open with" > Browser**
+
+> 💡 You don’t need a server or compiler to run this project.
+
+---
+
+## ▶️ Usage
+
+Once the app is open in your browser:
+
+- Enter a guest name in the input field and click **"Submit"**.
+- The guest will be added to the list with:
+  - A **Remove** button to delete the guest
+  - A **Toggle RSVP** button to mark attending or not attending
+- Guests will be restricted to 10; the app alerts if the limit is reached.
+- Extra features like category labels, timestamps, and edit options can be added as stretch goals.
+
+---
 
 ## 👩‍💻 Author
 
-Grace Eileen Bass
+**Grace Eileen Bass**
 
-## 📄 License
+---
 
-This project is open-source and available under the [MIT License](LICENSE).
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+### 📚 Related Learning Goals
+
+- DOM Manipulation using JavaScript
+- Form Handling and Event Listeners
+- `event.preventDefault()` usage
+- Creating interactive UIs without page reloads
+
+---
