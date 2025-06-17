@@ -14,6 +14,10 @@ This project was created for **Week 2 Code Challenge** as part of a JavaScript l
 
 It emphasizes real-world DOM manipulation, event handling, and dynamic rendering of data using **JavaScript**.
 
+## 🌐 Live Demo
+
+[View Deployed App](https://grace-eileen7.github.io/event-guest-list-manager/)
+
 ## 🛠️ Technologies Used
 
 - HTML5
