@@ -2,8 +2,6 @@
 
 A simple interactive web app that allows users to manage a guest list for an event. Guests can be added, removed, edited, and marked as attending or not — all without reloading the page.
 
----
-
 ## 📋 Description
 
 This project was created for **Week 2 Code Challenge** as part of a JavaScript learning module. The challenge is to build a working guest list manager that allows a user to:
@@ -16,15 +14,11 @@ This project was created for **Week 2 Code Challenge** as part of a JavaScript l
 
 It emphasizes real-world DOM manipulation, event handling, and dynamic rendering of data using **JavaScript**.
 
----
-
 ## 🛠️ Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript (ES6)
-
----
 
 ## 📁 File Structure
 
@@ -40,13 +34,9 @@ project-root/
 
 ```
 
----
-
 ## 🖼️ Screenshot
 
 ![Screenshot](./assets/Screenshot%202025-06-17%20112905.png)
-
----
 
 ## 🧪 Testing and How to Run the Project
 
@@ -72,8 +62,6 @@ You can run this app directly in your browser. No installations are required.
 
 > 💡 You don’t need a server or compiler to run this project.
 
----
-
 ## ▶️ Usage
 
 Once the app is open in your browser:
@@ -85,19 +73,13 @@ Once the app is open in your browser:
 - Guests will be restricted to 10; the app alerts if the limit is reached.
 - Extra features like category labels, timestamps, and edit options can be added as stretch goals.
 
----
-
 ## 👩‍💻 Author
 
 **Grace Eileen Bass**
 
----
-
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
 
 ### 📚 Related Learning Goals
 
@@ -105,5 +87,3 @@ This project is licensed under the [MIT License](LICENSE).
 - Form Handling and Event Listeners
 - `event.preventDefault()` usage
 - Creating interactive UIs without page reloads
-
----
